@@ -1,0 +1,39 @@
+﻿
+@model Credit.Web.Models.CreditSimulator
+
+@{
+    ViewBag.Title = "Simulador de creditos";
+}
+
+<h2>Simulador de creditos</h2>
+<hr />
+@Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+<form action="/Credits/Simulator" method="post">
+
+
+    @Html.DisplayNameFor(m => m.ValorPrestamo)
+    @Html.TextBoxFor(m => m.ValorPrestamo, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.ValorPrestamo, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.DisplayNameFor(m => m.PlazoMeses)
+    @Html.TextBoxFor(m => m.PlazoMeses, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.PlazoMeses, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.DisplayNameFor(m => m.TasaMesVencida)
+    @Html.TextBoxFor(m => m.TasaMesVencida, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.TasaMesVencida, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.DisplayNameFor(m => m.ValorSeguro)
+    @Html.TextBoxFor(m => m.ValorSeguro, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.ValorSeguro, "", new { @class = "text-danger" })
+    <br />
+
+    <br />
+
+    <input type="submit" value="Simular" class="btn btn-primary" />
+</form>
+

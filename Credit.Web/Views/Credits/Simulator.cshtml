@@ -1,0 +1,61 @@
+﻿@model Credit.Web.Models.CreditSimulator
+
+@{
+    ViewBag.Title = "Simulador de creditos";
+}
+
+
+
+<h2>Simulador de creditos</h2>
+<hr />
+
+
+<div class="container">
+    <div class="table-responsive">
+        <table class="table table-bordered border-primary">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Cuota #</th>
+                    <th scope="col">Abono Intereses</th>
+                    <th scope="col">Abono Capital</th>
+                    <th scope="col">Couta Mensual</th>
+                    <th scope="col">Valor Seguro</th>
+                    <th scope="col">Couta Mensual Total</th>
+                    <th scope="col">Saldo</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @{
+                    var nroCuotas = @ViewBag.nroCuotas;
+                    var vlrPrestamo = @ViewBag.valorPrestamo;
+                    var tasa = @ViewBag.tasa;
+                    var vlrSeguro = @ViewBag.vlrSeguro;
+                    var cuotaMensual = @ViewBag.cuotaMensual;
+                    var cuotaconSeguro = (int)(cuotaMensual + vlrSeguro);
+                }
+                @for (int i = 1; i <= @ViewBag.nroCuotas; i++)
+                {
+                    var cuotaCont = i;
+                    var abonoAlInteres = vlrPrestamo * tasa;
+                    var abonoCapital= (int)(cuotaMensual - abonoAlInteres);
+                    var nuevoSaldo = vlrPrestamo - abonoCapital;
+
+                    
+
+                    <tr>
+                        <td scope="row">@cuotaCont</td>
+                        <td>@Math.Round(@abonoAlInteres)</td>
+                        <td>@abonoCapital</td>
+                        <td>@Math.Round(@cuotaMensual)</td>
+                        <td>@vlrSeguro</td>
+                        <td>@cuotaconSeguro</td>
+                        <td>@nuevoSaldo</td>
+                        
+                    </tr>
+                    vlrPrestamo = (int)nuevoSaldo;
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
